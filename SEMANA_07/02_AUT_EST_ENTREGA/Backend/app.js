@@ -10,23 +10,19 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-app.get("/inteli", (req, res) => {
+app.get("/proficiencias", (req, res) => {
   const db = new sqlite3.Database(DBPATH, (err) => {
     if (err) {
       console.error(err.message);
     }
     console.log("Connected to the database.");
   });
-  db.all(
-    'SELECT * FROM formacao WHERE instituicao="inteli"',
-    [],
-    (err, rows) => {
-      if (err) {
-        console.error(err.message);
-      }
-      res.json(rows);
+  db.all("SELECT * FROM proficiencias", [], (err, rows) => {
+    if (err) {
+      console.error(err.message);
     }
-  );
+    res.json(rows);
+  });
 
   db.close((err) => {
     if (err) {
@@ -35,6 +31,7 @@ app.get("/inteli", (req, res) => {
     console.log("Closed the database connection.");
   });
 });
+
 app.get("/experiencias", (req, res) => {
   const db = new sqlite3.Database(DBPATH, (err) => {
     if (err) {
