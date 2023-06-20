@@ -1,8 +1,8 @@
 api = 'http://127.0.0.1:3000'
 $(document).ready(() => {
-    users.list();
+    form.list();
 });
-var users = {
+var form = {
     list() {
         $.ajax({
             url: api + '/formacao',
